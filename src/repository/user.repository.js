@@ -7,9 +7,10 @@ async function getAllUsersDB() {
 }
 async function getUserByIdDB(_id) {
     const { students } = await connect()
-    return await students.find({ _id: new ObjectId(_id) }).toArray();
+    return students.findOne({ _id: new ObjectId(_id) });
 }
 async function createUserDB(name, surname) {
+    console.log(name, surname);
     const { students } = await connect()
     await students.insertOne({ name, surname });
     return 'success'

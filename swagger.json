@@ -10,12 +10,59 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Getting all users",
-                "displayRequestDuration": false,
+                "summary": "Get all users",
                 "responses": {
                     "200": {
-                        "description": "Completed successfully",
+                        "description": "Completed successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "surname": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Completed successfully"
+                    }
+                }
+            }
+        },
+        "/user/{_id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by ID",
+                "parameters": [
+                    {
+                        "name": "Enter user id",
+                        "in": "path",
+                        "description": "user ID",
                         "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Completed successfully"
                     }
                 }
             }
