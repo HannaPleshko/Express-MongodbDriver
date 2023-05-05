@@ -1,15 +1,15 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongodb');
 
 async function connect() {
-    const MongoDBclient = new MongoClient('mongodb://localhost:27017')
+  const MongoDBclient = new MongoClient('mongodb://localhost:27017');
 
-    await MongoDBclient.connect()
+  await MongoDBclient.connect();
 
-    const db = MongoDBclient.db('hschool');
+  const db = MongoDBclient.db('hschool');
 
-    return {
-        students: db.collection('students')
-    }
+  return {
+    students: db.collection('students'),
+  };
 }
 
-module.exports = { connect } 
+module.exports = { connect };
