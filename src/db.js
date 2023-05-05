@@ -7,9 +7,7 @@ async function connect() {
 
   const db = MongoDBclient.db('hschool');
 
-  return {
-    students: db.collection('students'),
-  };
+  return { students: db.collection('students') };
 }
 
 module.exports = { connect };

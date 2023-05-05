@@ -1,28 +1,55 @@
 const express = require('express');
 const { getAllUsers, getUserById, createUser, updateUser, deleteUser } = require('../service/user.service');
+const { SuccessType } = require('../exceptions/exceptions.type');
 
 const route = express.Router();
 
 route.get('/', async (req, res) => {
-  res.status(200).send(await getAllUsers());
+  try {
+    buildResponse(res, 200, await getAllUsers());
+  } catch (error) {
+    next(error);
+  }
 });
+
 route.get('/:_id', async (req, res) => {
-  const { _id } = req.params;
-  console.log(_id);
-  res.status(200).send(await getUserById(_id));
+  try {
+    const { _id } = req.params;
+    buildResponse(res, 200, await getUserById(_id));
+  } catch (error) {
+    next(error);
+  }
 });
+
 route.post('/', async (req, res) => {
-  const { name, surname } = req.body;
-  res.status(200).send(await createUser(name, surname));
+  try {
+    const { name, surname } = req.body;
+    await createUser(name, surname);
+    buildResponse(res, 201, SuccessType.USERS_SUCCESS.message);
+  } catch (error) {
+    next(error);
+  }
 });
+
 route.put('/:_id', async (req, res) => {
-  const { _id } = req.params;
-  const { name, surname } = req.body;
-  res.status(200).send(await updateUser(_id, name, surname));
+  try {
+    const { _id } = req.params;
+    const { name, surname } = req.body;
+    await updateUser(_id, name, surname);
+    buildResponse(res, 200, SuccessType.USERS_SUCCESS.message);
+  } catch (error) {
+    next(error);
+  }
 });
+
 route.delete('/:_id', async (req, res) => {
-  const { _id } = req.params;
-  res.status(200).send(await deleteUser(_id));
+  try {
+    const { _id } = req.params;
+    await deleteUser(_id);
+    buildResponse(res, 200, SuccessType.USERS_SUCCESS.message);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = route;
