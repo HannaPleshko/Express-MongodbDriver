@@ -1,12 +1,10 @@
 const { MongoClient } = require('mongodb');
+const { HOST_DB, DATABASE } = require('./config/index');
 
 async function connect() {
-  const MongoDBclient = new MongoClient('mongodb://localhost:27017');
-
+  const MongoDBclient = new MongoClient(HOST_DB);
   await MongoDBclient.connect();
-
-  const db = MongoDBclient.db('hschool');
-
+  const db = MongoDBclient.db(DATABASE);
   return { students: db.collection('students') };
 }
 

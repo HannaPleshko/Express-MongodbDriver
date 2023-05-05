@@ -1,10 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
-const user = require('./controller/user.controller');
+const { logger } = require('./utils/logger');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
-const cors = require('cors');
-const { logger } = require('./utils/logger');
+const user = require('./controller/user.controller');
 
 const app = express();
 
