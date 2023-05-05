@@ -1,10 +1,11 @@
 const express = require('express');
 const { getAllUsers, getUserById, createUser, updateUser, deleteUser } = require('../service/user.service');
 const { SuccessType } = require('../exceptions/exceptions.type');
+const { buildResponse } = require('../helper/response');
 
 const route = express.Router();
 
-route.get('/', async (req, res) => {
+route.get('/', async (req, res, next) => {
   try {
     buildResponse(res, 200, await getAllUsers());
   } catch (error) {
@@ -12,7 +13,7 @@ route.get('/', async (req, res) => {
   }
 });
 
-route.get('/:_id', async (req, res) => {
+route.get('/:_id', async (req, res, next) => {
   try {
     const { _id } = req.params;
     buildResponse(res, 200, await getUserById(_id));
@@ -21,7 +22,7 @@ route.get('/:_id', async (req, res) => {
   }
 });
 
-route.post('/', async (req, res) => {
+route.post('/', async (req, res, next) => {
   try {
     const { name, surname } = req.body;
     await createUser(name, surname);
@@ -31,7 +32,7 @@ route.post('/', async (req, res) => {
   }
 });
 
-route.put('/:_id', async (req, res) => {
+route.put('/:_id', async (req, res, next) => {
   try {
     const { _id } = req.params;
     const { name, surname } = req.body;
@@ -42,7 +43,7 @@ route.put('/:_id', async (req, res) => {
   }
 });
 
-route.delete('/:_id', async (req, res) => {
+route.delete('/:_id', async (req, res, next) => {
   try {
     const { _id } = req.params;
     await deleteUser(_id);

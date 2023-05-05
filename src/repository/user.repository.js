@@ -8,7 +8,7 @@ async function getAllUsersDB() {
 
 async function getUserByIdDB(_id) {
   const { students } = await connect();
-  return students.findOne({ _id: new ObjectId(_id) });
+  return students.find({ _id: new ObjectId(_id) }).toArray();
 }
 
 async function createUserDB(name, surname) {
