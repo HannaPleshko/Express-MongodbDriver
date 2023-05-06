@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
     "format": "prettier --write ."
   },
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "eslint": "^8.39.0",
     "express": "^4.18.2",
     "mongodb": "^5.3.0",
     "nodemon": "^2.0.22",
